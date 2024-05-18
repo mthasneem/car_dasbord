@@ -27,7 +27,7 @@ frame_1 = ctk.CTkFrame(master=app)
 frame_1.place(relx=0.005, rely=0.5, relwidth=0.45, relheight=0.45)
 
 frame_2 = ctk.CTkFrame(master=app)
-frame_2.place(relx=0.5, rely=0.005, relwidth=0.45, relheight=0.45)
+frame_2.place(relx=0.5, rely=0.005, relwidth=0.45, relheight=0.98)
 
 close_button = ctk.CTkButton(master=app, text="X",command=close_program,fg_color="red", hover_color="#ff6666")
 close_button.place(relx=0.94, rely=0.005, relwidth=0.06, relheight=0.02)
@@ -51,11 +51,11 @@ close_button.place(relx=0.94, rely=0.005, relwidth=0.06, relheight=0.02)
 half_frame_width = frame_0.winfo_reqwidth() // 2
 
 
-speed_gauge = tkt.Gauge(frame_0, max_value=100.0,label='speed', unit='km/h',width=400,height=400)
+speed_gauge = tkt.Gauge(frame_0, max_value=100.0,label='speed', unit='km/h',width=250,height=250)
 speed_gauge.pack(padx=10,side="left",expand=True)
 speed_gauge.set_value(10) # set the value of the gauge
 
-acc_gauge = tkt.Gauge(frame_0, max_value=100.0,label='Accelaration', unit='km/h^2',width=400,height=400)
+acc_gauge = tkt.Gauge(frame_0, max_value=100.0,label='Accelaration', unit='km/h^2',width=250,height=250)
 acc_gauge.pack(padx=10,side="left",expand=True)
 acc_gauge.set_value(10) # set the value of the gauge
 
@@ -73,13 +73,25 @@ marker_3 = map_widget.set_marker(7.4089, 80.6080)
 def send_event():
     print("button pressed")
 
-send_button = ctk.CTkButton(frame_2, text="CTkButton", command=send_event)
-send_button.pack(pady=10, padx=10, anchor="w")
+send_button = ctk.CTkButton(frame_2, text="Overtake", command=send_event)
+send_button.place(relx=0.55, rely=0.35, relwidth=0.17, relheight=0.12)
 
 def button_event():
     print("button pressed")
 
-button = ctk.CTkButton(frame_2, text="CTkButton", command=button_event)
-button.pack(pady=10, padx=10, anchor="w")
+button = ctk.CTkButton(frame_2, text="Cruise Control", command=button_event)
+button.place(relx=0.55, rely=0.65, relwidth=0.17, relheight=0.12)
+
+led1 = tkt.Led(frame_2, size=200)
+led1.place(relx=0.1, rely=0.3)
+
+led1.to_red()
+led1.to_green(on=True)
+
+led2 = tkt.Led(frame_2, size=200)
+led2.place(relx=0.1, rely=0.6)
+
+led2.to_red()
+led2.to_green(on=True)
 
 app.mainloop()
