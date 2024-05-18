@@ -9,7 +9,14 @@ ctk.set_default_color_theme("blue")  # Themes: blue (default), dark-blue, green
 app = ctk.CTk()  # create CTk window like you do with the Tk window
 app.title("Dashboard")
 # app.overrideredirect(True)  # remove window border
-# app.attributes('-fullscreen',True)
+app.attributes('-fullscreen',True)
+#app.state('zoomed')  # Maximize the window
+app.focus_force()  # Force the window to gain focus
+
+# Add a red close button
+def close_program():
+    app.destroy()
+
 
 
 frame_0 = ctk.CTkFrame(master=app)
@@ -21,6 +28,8 @@ frame_1.place(relx=0.005, rely=0.5, relwidth=0.45, relheight=0.45)
 frame_2 = ctk.CTkFrame(master=app)
 frame_2.place(relx=0.5, rely=0.005, relwidth=0.45, relheight=0.45)
 
+close_button = ctk.CTkButton(master=app, text="X",command=close_program,fg_color="red", hover_color="#ff6666")
+close_button.place(relx=0.94, rely=0.005, relwidth=0.06, relheight=0.02)
 
 # speed_label = ctk.CTkLabel(master=frame_0, text="Speed", fg_color="transparent")
 # speed_label.pack(pady=10, padx=10, anchor="w")
