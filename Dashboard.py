@@ -12,6 +12,7 @@ app.title("Dashboard")
 app.attributes('-fullscreen',True)
 #app.state('zoomed')  # Maximize the window
 app.focus_force()  # Force the window to gain focus
+#app.geometry("800x600")  # Set the window size
 
 # Add a red close button
 def close_program():
@@ -46,11 +47,15 @@ close_button.place(relx=0.94, rely=0.005, relwidth=0.06, relheight=0.02)
 # ot_entry = ctk.CTkEntry(master=frame_0, placeholder_text="")
 # ot_entry.pack(pady=10, padx=10, fill="x", anchor="w")
 
-speed_gauge = tkt.Gauge(frame_0, max_value=100.0,label='speed', unit='km/h')
+# Calculate half the width of frame_0
+half_frame_width = frame_0.winfo_reqwidth() // 2
+
+
+speed_gauge = tkt.Gauge(frame_0, max_value=100.0,label='speed', unit='km/h',width=400,height=400)
 speed_gauge.pack(padx=10,side="left",expand=True)
 speed_gauge.set_value(10) # set the value of the gauge
 
-acc_gauge = tkt.Gauge(frame_0, max_value=100.0,label='Accelaration', unit='km/h^2')
+acc_gauge = tkt.Gauge(frame_0, max_value=100.0,label='Accelaration', unit='km/h^2',width=400,height=400)
 acc_gauge.pack(padx=10,side="left",expand=True)
 acc_gauge.set_value(10) # set the value of the gauge
 
