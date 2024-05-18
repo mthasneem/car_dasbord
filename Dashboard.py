@@ -11,9 +11,16 @@ app.title("Dashboard")
 # app.overrideredirect(True)  # remove window border
 # app.attributes('-fullscreen',True)
 
-frame_width = app.winfo_reqwidth() 
-frame_0 = ctk.CTkFrame(master=app,width=frame_width)
-frame_0.pack( pady=10, padx=10, fill="both", expand=True)
+
+frame_0 = ctk.CTkFrame(master=app)
+frame_0.place(relx=0.005, rely=0.005, relwidth=0.45, relheight=0.45)
+
+frame_1 = ctk.CTkFrame(master=app)
+frame_1.place(relx=0.005, rely=0.5, relwidth=0.45, relheight=0.45)
+
+frame_2 = ctk.CTkFrame(master=app)
+frame_2.place(relx=0.5, rely=0.005, relwidth=0.45, relheight=0.45)
+
 
 # speed_label = ctk.CTkLabel(master=frame_0, text="Speed", fg_color="transparent")
 # speed_label.pack(pady=10, padx=10, anchor="w")
@@ -30,21 +37,18 @@ frame_0.pack( pady=10, padx=10, fill="both", expand=True)
 # ot_entry = ctk.CTkEntry(master=frame_0, placeholder_text="")
 # ot_entry.pack(pady=10, padx=10, fill="x", anchor="w")
 
-
-speed_gauge = tkt.Gauge(frame_0, max_value=100.0,label='speed', unit='km/h',width=frame_width/2,height=100)
-speed_gauge.pack(padx=10,side="left",expand=True,fill="both")
+speed_gauge = tkt.Gauge(frame_0, max_value=100.0,label='speed', unit='km/h')
+speed_gauge.pack(padx=10,side="left",expand=True)
 speed_gauge.set_value(10) # set the value of the gauge
 
-acc_gauge = tkt.Gauge(frame_0, max_value=100.0,label='Accelaration', unit='km/h^2',width=frame_width/2,height=100)
+acc_gauge = tkt.Gauge(frame_0, max_value=100.0,label='Accelaration', unit='km/h^2')
 acc_gauge.pack(padx=10,side="left",expand=True)
 acc_gauge.set_value(10) # set the value of the gauge
 
-frame_1 = ctk.CTkFrame(master=app,width=frame_width)
-frame_1.pack( pady=10, padx=10, fill="both", expand=True)
 
 # create map widget
-map_widget = tkintermapview.TkinterMapView(frame_1, width=400, height=600, corner_radius=0)
-map_widget.pack(padx=10,pady=10, expand=True )
+map_widget = tkintermapview.TkinterMapView(frame_1, corner_radius=5)
+map_widget.pack(padx=10,pady=10,fill="both",expand=True)
 
 # set current widget position and zoom
 map_widget.set_position(7.4089, 80.6080)  # Paris, France
@@ -55,13 +59,13 @@ marker_3 = map_widget.set_marker(7.4089, 80.6080)
 def send_event():
     print("button pressed")
 
-send_button = ctk.CTkButton(app, text="CTkButton", command=send_event)
+send_button = ctk.CTkButton(frame_2, text="CTkButton", command=send_event)
 send_button.pack(pady=10, padx=10, anchor="w")
 
 def button_event():
     print("button pressed")
 
-button = ctk.CTkButton(app, text="CTkButton", command=button_event)
+button = ctk.CTkButton(frame_2, text="CTkButton", command=button_event)
 button.pack(pady=10, padx=10, anchor="w")
 
 app.mainloop()
